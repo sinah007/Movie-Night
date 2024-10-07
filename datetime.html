@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date and Time Selection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        select, input {
+            padding: 10px;
+            margin: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h1>When Should We Watch?</h1>
+    <p>Great! Now let’s figure out when we can watch the movie together. Please select the day and time that works for you.</p>
+
+    <label for="day">Select a day:</label>
+    <select id="day">
+        <option value="Monday">Monday</option>
+        <option value="Tuesday">Tuesday</option>
+        <option value="Wednesday">Wednesday</option>
+        <option value="Thursday">Thursday</option>
+        <option value="Friday">Friday</option>
+        <option value="Saturday">Saturday</option>
+        <option value="Sunday">Sunday</option>
+    </select>
+    <br>
+
+    <label for="time">Select a time:</label>
+    <input type="time" id="time">
+    <br><br>
+    <button onclick="submitDetails()">Submit</button>
+
+    <script>
+        function submitDetails() {
+            const selectedDay = document.getElementById('day').value;
+            const selectedTime = document.getElementById('time').value;
+
+            if (!selectedTime) {
+                alert('Please select a time.');
+                return;
+            }
+
+            localStorage.setItem('selectedDay', selectedDay);
+            localStorage.setItem('selectedTime', selectedTime);
+
+            window.location.href = 'confirmation.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Night Confirmation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Movie Night is Set!</h1>
+    <p id="movieDetails"></p>
+    <p>I’m really looking forward to watching it with you! Can’t wait for our movie night.</p>
+    <p>See you then!</p>
+    <p>- Sina</p>
+
+    <!-- Button to share and download Excel file -->
+    <button onclick="downloadExcel()">Share the Results</button>
+
+    <script>
+        // Retrieve the saved data from local storage
+        const movie = localStorage.getItem('selectedMovie');
+        const day = localStorage.getItem('selectedDay');
+        const time = localStorage.getItem('selectedTime');
+
+        // Display the selected details on the page
+        document.getElementById('movieDetails').innerText = `Movie: ${movie}\nDay: ${day}\nTime: ${time}`;
+
+        // Function to generate and download the Excel file
+        function downloadExcel() {
+            const wb = XLSX.utils.book_new(); // Create a new workbook
+            const wsData = [
+                ['Movie', 'Day', 'Time'],   // Column headers
+                [movie, day, time]         // Data (Movie, Day, Time)
+            ];
+
+            // Create a worksheet from the data
+            const ws = XLSX.utils.aoa_to_sheet(wsData);
+            XLSX.utils.book_append_sheet(wb, ws, "Movie Night Details");
+
+            // Export to Excel file
+            XLSX.writeFile(wb, 'MovieNightDetails.xlsx');
+
+            alert('Please send the downloaded Excel file to Sina for notify the results.');
+        }
+    </script>
+</body>
+</html>

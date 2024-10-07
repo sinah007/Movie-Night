@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Selection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .movie-option {
+            margin: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sina’s Movie Suggestions</h1>
+    <p>I’ve put together a few movie suggestions for us. Please pick one you’d like to watch, or feel free to add your own suggestion!</p>
+
+    <div class="movie-option">
+        <input type="radio" name="movie" value="Hidden Figures"> Hidden Figures<br>
+        <img src="https://ras.ac.uk/sites/default/files/description/IMG_2077-6.JPG" alt="Hidden Figures">
+    </div>
+
+    <div class="movie-option">
+        <input type="radio" name="movie" value="Bridge of Spies"> Bridge of Spies<br>
+        <img src="https://musicart.xboxlive.com/7/2b562200-0000-0000-0000-000000000002/504/image.jpg?w=1920&h=1080" alt="Bridge of Spies">
+    </div>
+
+    <div class="movie-option">
+        <input type="radio" name="movie" value="Longlegs"> Longlegs<br>
+        <img src="https://upload.wikimedia.org/wikipedia/en/6/60/Longlegs_film_poster.jpg" alt="Longlegs">
+    </div>
+
+    <div class="movie-option">
+        <input type="radio" name="movie" value="Kate and Leopold"> Kate and Leopold<br>
+        <img src="https://upload.wikimedia.org/wikipedia/en/6/6b/Kate_and_leopold_ver2.jpg" alt="Kate and Leopold">
+    </div>
+
+    <div class="movie-option">
+        <input type="radio" name="movie" value="The Martian"> The Martian<br>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBRV6f4nBvO0iCrSSy89NgG1YFJwh3-4jfiA&s" alt="The Martian">
+    </div>
+
+    <p>Have another movie in mind? Enter it here:</p>
+    <input type="text" id="customMovie" placeholder="Your movie suggestion">
+    <br><br>
+    <button onclick="goToDateSelection()">Next</button>
+
+    <script>
+        function goToDateSelection() {
+            const selectedMovie = document.querySelector('input[name="movie"]:checked');
+            const customMovie = document.getElementById('customMovie').value;
+
+            if (!selectedMovie && !customMovie) {
+                alert('Please select or suggest a movie.');
+                return;
+            }
+
+            const movieChoice = selectedMovie ? selectedMovie.value : customMovie;
+            localStorage.setItem('selectedMovie', movieChoice);
+
+            window.location.href = 'datetime.html';
+        }
+    </script>
+</body>
+</html>
